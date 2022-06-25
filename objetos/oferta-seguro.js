@@ -21,20 +21,12 @@ const cliente = {
     }
 }
 
-let relatorio = ""
+// Object.keys cria um array pegando todas as chaves que foi passada no objeto por parametro
 
-for ( let info in cliente){
-    if(typeof cliente[info] === "object" || typeof cliente
-    [info] === "function"){
-        continue
-    }else{
-        relatorio += `
-        ${info} ==> ${cliente[info]}
-        `
+function oferecerSeguro(obj){
+    const propsClientes = Object.keys(obj)
+    if(propsClientes.includes("dependentes")){
+        console.log(`Oferta de seguro de vida para ${obj.nome}`)
     }
-    
 }
-
-
-
-console.log(relatorio)
+oferecerSeguro(cliente)
