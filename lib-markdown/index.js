@@ -5,14 +5,22 @@ function tratarErro(erro) {
     throw new Error(chalk.red(erro.code, 'não há arquivo no caminho'))
 }
 
-function pegandoArquivo(caminhoDoArquivo) {
+function pegaArquivo(caminhoDoArquivo) {
     const encoding = 'utf-8'
-    fs.readFile(caminhoDoArquivo, encoding, (erro,texto) => {
-        if (erro) {
-            tratarErro(erro)
-        }
-        console.log(chalk.green(texto))
-    })
+    fs.promises
+    .readFile(caminhoDoArquivo, encoding)
+    .then((texto) => chalk.green(console.log(texto)))
+    .catch((erro) => tratarErro(erro))
 }
 
-pegandoArquivo('./arquivos/texto1.md')
+// function pegaArquivo(caminhoDoArquivo) {
+//     const encoding = 'utf-8'
+//     fs.readFile(caminhoDoArquivo, encoding, (erro,texto) => {
+//         if (erro) {
+//             tratarErro(erro)
+//         }
+//         console.log(chalk.green(texto))
+//     })
+// }
+
+pegaArquivo('./arquivos/texto1.md')
